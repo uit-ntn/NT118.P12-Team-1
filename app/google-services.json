@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "368835745483",
+    "project_id": "road-watcher-6ac74",
+    "storage_bucket": "road-watcher-6ac74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368835745483:android:0717adef07416337726d4e",
+        "android_client_info": {
+          "package_name": "com.roadwatcher"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkjU0lubwPwK7j5wOlnhuHUUCWb6Ie5iA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
