@@ -19,7 +19,7 @@
         android:layout_height="0dp"
         android:layout_weight="6.5">
 
-        <com.mapbox.mapboxsdk.maps.MapView
+        <org.osmdroid.views.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
