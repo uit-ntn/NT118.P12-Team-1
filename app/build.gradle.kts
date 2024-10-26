@@ -45,7 +45,9 @@ android {
 }
 
 dependencies {
+    implementation ("org.osmdroid:osmdroid-android:6.1.11")
     implementation ("org.maplibre.gl:android-sdk:10.0.2")
+
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
