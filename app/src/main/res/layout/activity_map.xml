@@ -11,24 +11,118 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.5">
+        android:layout_weight="1.5"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_search_bar"
+            android:padding="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <!-- Ô nhập văn bản -->
+            <EditText
+                android:id="@+id/ip_search_bar"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/search_icon"
+                android:background="@android:color/transparent"
+                android:hint="Tìm kiếm"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColorHint="#8A6E5D" />
+
+            <!-- Hình ảnh tìm kiếm bên phải -->
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/border_circle"
+                android:padding="5dp"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6.5">
+        android:layout_weight="7.5">
 
-        <org.osmdroid.views.MapView
-            android:id="@+id/mapView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <org.osmdroid.views.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/btnCurrentLocation"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="16dp"
+                android:background="@drawable/bt_my_location"
+                android:contentDescription="Vị trí của tôi" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#005700">
+        android:background="#005700"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/go_to_map"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bt_map_screen">
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/go_to_home"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bt_home_screen"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/go_to_user"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bt_user_screen"/>
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
