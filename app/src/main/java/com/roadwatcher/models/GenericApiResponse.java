@@ -1,4 +1,4 @@
-package com.roadwatcher.model;
+package com.roadwatcher.models;
 
 public class GenericApiResponse {
     private boolean success;

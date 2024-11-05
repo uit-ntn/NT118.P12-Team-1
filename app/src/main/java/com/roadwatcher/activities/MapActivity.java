@@ -1,8 +1,11 @@
-package com.roadwatcher;
+package com.roadwatcher.activities;
 
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.roadwatcher.R;
+
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.BoundingBox;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Map extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity {
 
     private MapView mapView;
 

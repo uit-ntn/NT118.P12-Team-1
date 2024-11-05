@@ -1,4 +1,4 @@
-package com.roadwatcher.model;
+package com.roadwatcher.models;
 import java.util.List;
 
 public class Pothole {

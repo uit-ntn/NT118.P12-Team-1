@@ -2,32 +2,38 @@ package com.roadwatcher;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import com.roadwatcher.R;
+import com.roadwatcher.activities.MapActivity;
 
-import com.roadwatcher.utils.SessionManager;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.api.IMapController;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button button1, button2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SessionManager sessionManager = new SessionManager(this);
-        if (!sessionManager.isLoggedIn()) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
-
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+
+        // Set click listeners for the buttons
+        button1.setOnClickListener(v -> navigateToMapActivity("Map 1"));
+        button2.setOnClickListener(v -> navigateToMapActivity("Map 2"));
+    }
+
+    private void navigateToMapActivity(String mapType) {
+        Intent intent = new Intent(MainActivity.this, MapActivity.class);
+        intent.putExtra("map_type", mapType); // Optionally send data to MapActivity
+        startActivity(intent);
     }
 }
