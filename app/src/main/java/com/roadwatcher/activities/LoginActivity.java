@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +27,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText usernameEditText, passwordEditText;
+    private EditText emailEditText, passwordEditText;
     private Button loginButton;
     private CheckBox rememberMeCheckBox;
     private TextView forgotPasswordText;
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Ánh xạ các view từ file XML
-        usernameEditText = findViewById(R.id.usernameEditText);
+        emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
@@ -61,28 +62,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        final String name = usernameEditText.getText().toString().trim();
+        final String email = emailEditText.getText().toString().trim();
         final String password = passwordEditText.getText().toString().trim();
 
-        if (name.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền vào tất cả các trường", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        LoginRequest loginRequest = new LoginRequest(name, "", "", password);
+        LoginRequest loginRequest = new LoginRequest(email , password);
 
         AuthApiService apiService = ApiClient.getClient().create(AuthApiService.class);
         Call<LoginResponse> call = apiService.loginUser(loginRequest);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     String userId = loginResponse.getUserId();
 
-                    sessionManager.createLoginSession(userId, name, token);
+                    sessionManager.createLoginSession(userId, token);
 
                     navigateToMainActivity();
                 } else {

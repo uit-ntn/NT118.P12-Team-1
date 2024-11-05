@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,11 +27,11 @@
             android:value="osmdroid" />
         <meta-data
             android:name="com.mapbox.token"
-            android:value="WHKTZEd8aR1XHZbS8Nh3" /> <!-- Check for typos here -->
+            android:value="WHKTZEd8aR1XHZbS8Nh3" />
 
-        <!-- MapActivity is the LAUNCHER activity -->
+        <!-- Set MainActivity as the LAUNCHER activity -->
         <activity
-            android:name=".activities.MapActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,22 +40,20 @@
         </activity>
 
         <activity
-            android:name=".activities.LoginActivity"
-            android:exported="true"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.RoadWatcher">
-            <!-- Removed LAUNCHER intent-filter here -->
-        </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.SignupActivity"
+            android:name=".activities.MapActivity"
             android:exported="true">
             <!-- Removed LAUNCHER intent-filter here -->
         </activity>
+
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.RoadWatcher" />
+
+        <activity
+            android:name=".activities.SignupActivity"
+            android:exported="true" />
 
     </application>
 

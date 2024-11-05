@@ -7,7 +7,6 @@ public class SessionManager {
 
     private static final String PREF_NAME = "user_session";
     private static final String KEY_USER_ID = "user_id";
-    private static final String KEY_USERNAME = "username";
     private static final String KEY_TOKEN = "token";
 
     private SharedPreferences sharedPreferences;
@@ -19,9 +18,8 @@ public class SessionManager {
     }
 
     // Save user data
-    public void createLoginSession(String userId, String username, String token) {
+    public void createLoginSession(String userId, String token) {
         editor.putString(KEY_USER_ID, userId);
-        editor.putString(KEY_USERNAME, username);
         editor.putString(KEY_TOKEN, token);
         editor.apply();
     }
@@ -36,9 +34,6 @@ public class SessionManager {
         return sharedPreferences.getString(KEY_USER_ID, null);
     }
 
-    public String getUsername() {
-        return sharedPreferences.getString(KEY_USERNAME, null);
-    }
 
     public String getToken() {
         return sharedPreferences.getString(KEY_TOKEN, null);
