@@ -17,15 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadWatcher"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.SignupActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="osmdroid.cachePath"
@@ -36,28 +27,33 @@
         <meta-data
             android:name="com.mapbox.token"
             android:value="WHKTZEd8aR1XHZbS8Nh3" /> <!-- Check for typos here -->
-        <activity
-            android:name=".activities.LoginActivity"
-            android:exported="true"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.RoadWatcher">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+        <!-- MapActivity is the LAUNCHER activity -->
         <activity
             android:name=".activities.MapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.RoadWatcher">
+            <!-- Removed LAUNCHER intent-filter here -->
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.SignupActivity"
+            android:exported="true">
+            <!-- Removed LAUNCHER intent-filter here -->
         </activity>
 
     </application>

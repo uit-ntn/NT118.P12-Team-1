@@ -87,6 +87,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Số điện thoại"
+        android:drawableLeft="@android:drawable/ic_menu_call"
+        android:inputType="phone"
+        android:paddingLeft="10dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_below="@id/emailEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
     <!-- Đăng ký Button -->
     <Button
         android:id="@+id/registerButton"
@@ -95,7 +108,7 @@
         android:text="ĐĂNG KÝ"
         android:textColor="@android:color/white"
         android:backgroundTint="#4CAF50"
-        android:layout_below="@id/emailEditText"
+        android:layout_below="@id/phoneEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
