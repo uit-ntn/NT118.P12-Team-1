@@ -60,6 +60,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation ("org.osmdroid:osmdroid-android:6.1.11")
     implementation ("org.maplibre.gl:android-sdk:10.0.2")
@@ -70,6 +71,10 @@ dependencies {
     implementation("androidx.activity:activity:1.9.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
+
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation ("org.mongodb:mongodb-driver-sync:4.3.0")
 
 
     implementation(libs.appcompat)
@@ -93,5 +98,5 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
-
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

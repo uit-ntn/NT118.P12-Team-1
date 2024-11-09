@@ -1,13 +1,19 @@
 package com.roadwatcher.models;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Pothole {
+    @SerializedName("_id")
     private String id;
+
+    @SerializedName("pothole_id")
     private String potholeId;
+
     private double longitude;
     private double latitude;
-    private String detectedTime;
     private String severity;
+    private String detectedTime;
     private double accelerationX;
     private double accelerationY;
     private double accelerationZ;

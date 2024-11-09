@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border_search_bar"
             android:padding="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
 
@@ -29,16 +29,26 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/search_icon"
+                android:layout_toStartOf="@+id/avt"
                 android:background="@android:color/transparent"
                 android:hint="Tìm kiếm"
                 android:padding="8dp"
                 android:singleLine="true"
-                android:textColorHint="#8A6E5D" />
+                android:textColorHint="@color/black" />
 
-            <!-- Hình ảnh tìm kiếm bên phải -->
+
+            <Button
+                android:id="@+id/find_route"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/bt_find_route">
+
+            </Button>
+
             <ImageView
-                android:id="@+id/search_icon"
+                android:id="@+id/avt"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
@@ -90,12 +100,65 @@
             android:layout_weight="3"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/go_to_map"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/bt_map_screen">
-            </Button>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/go_to_map"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bt_map_screen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bản đồ"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/go_to_home"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bt_home_screen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trang chủ"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"/>
+
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -104,24 +167,31 @@
             android:layout_weight="3"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/go_to_home"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/bt_home_screen"/>
-        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center">
+                <Button
+                    android:id="@+id/go_to_user"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bt_user_screen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"/>
 
-            <Button
-                android:id="@+id/go_to_user"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/bt_user_screen"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hồ sơ"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"/>
+
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
