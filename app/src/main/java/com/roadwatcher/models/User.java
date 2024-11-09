@@ -1,10 +1,15 @@
 package com.roadwatcher.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class User {
-    private String id;  // MongoDB ObjectId as a String
+    @SerializedName("_id")
+    private String id;
+    @SerializedName("pothole_id")
     private String userId;
+
     private String name;
     private String email;
     private String password;

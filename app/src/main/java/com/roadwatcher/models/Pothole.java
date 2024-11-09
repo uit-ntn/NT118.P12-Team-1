@@ -7,7 +7,7 @@ public class Pothole {
     @SerializedName("_id")
     private String id;
 
-    @SerializedName("pothole_id")
+    @SerializedName("user_id")
     private String potholeId;
 
     private double longitude;
