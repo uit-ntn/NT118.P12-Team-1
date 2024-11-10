@@ -13,12 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.roadwatcher.MainActivity;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.AuthApiService;
-import com.roadwatcher.models.LoginRequest;
-import com.roadwatcher.models.LoginResponse;
+import com.roadwatcher.https.LoginRequest;
+import com.roadwatcher.https.LoginResponse;
 import com.roadwatcher.utils.SessionManager;
 
 import retrofit2.Call;
@@ -28,10 +27,11 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
-    private Button loginButton;
+    private Button loginButton, signupButton;
     private CheckBox rememberMeCheckBox;
     private TextView forgotPasswordText;
     private SessionManager sessionManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
+        signupButton = findViewById(R.id.signupButton);
+
 
         sessionManager = new SessionManager(this);
 
@@ -54,6 +56,13 @@ public class LoginActivity extends AppCompatActivity {
 
         // Xử lý sự kiện nhấn nút Đăng nhập
         loginButton.setOnClickListener(v -> login());
+
+
+        signupButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         // Xử lý sự kiện nhấn vào Quên mật khẩu
         forgotPasswordText.setOnClickListener(v -> {
@@ -94,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Log.e("LoginActivity", "Lỗi: " + t.getMessage());
-                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Lỗi khi gửi yêu cầu đăng nhập, vui lòng thử lại", Toast.LENGTH_SHORT).show();
             }
         });
     }

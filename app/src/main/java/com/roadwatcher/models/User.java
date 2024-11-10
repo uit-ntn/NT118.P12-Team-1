@@ -7,7 +7,7 @@ import java.util.List;
 public class User {
     @SerializedName("_id")
     private String id;
-    @SerializedName("pothole_id")
+    @SerializedName("user_id")
     private String userId;
 
     private String name;

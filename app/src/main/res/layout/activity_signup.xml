@@ -34,7 +34,7 @@
 
     <!-- Tên đăng nhập Field -->
     <EditText
-        android:id="@+id/usernameEditText"
+        android:id="@+id/nameEditText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Tên đăng nhập"
@@ -55,7 +55,7 @@
         android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:background="@android:drawable/editbox_background_normal"
-        android:layout_below="@id/usernameEditText"
+        android:layout_below="@id/nameEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
