@@ -17,28 +17,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadWatcher"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.ForgotPasswordActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- Set DashboardActivity as MAIN -->
         <activity
             android:name=".activities.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- ForgotPasswordActivity -->
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
+            android:exported="true" />
+
+        <!-- UserActivity -->
         <activity
             android:name=".activities.UserActivity"
             android:exported="false" />
 
+        <!-- Map Configuration -->
         <meta-data
             android:name="osmdroid.cachePath"
             android:value="osmdroid" />
@@ -49,23 +48,24 @@
             android:name="com.mapbox.token"
             android:value="WHKTZEd8aR1XHZbS8Nh3" />
 
+        <!-- MapActivity -->
         <activity
             android:name=".activities.MapActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+        <!-- LoginActivity -->
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.RoadWatcher" />
+
+        <!-- SignupActivity -->
         <activity
             android:name=".activities.SignupActivity"
             android:exported="true" />

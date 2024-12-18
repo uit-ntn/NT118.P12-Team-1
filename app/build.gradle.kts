@@ -3,7 +3,6 @@ plugins {
 
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services") version "4.4.2" apply false
-    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 
@@ -46,9 +45,6 @@ android {
     buildFeatures {
         buildConfig = true
         compose = true
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
