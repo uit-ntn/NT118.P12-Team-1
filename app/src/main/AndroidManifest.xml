@@ -52,12 +52,6 @@
         <activity
             android:name=".activities.MapActivity"
             android:exported="true" />
-
-        <!-- MainActivity -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-
         <!-- LoginActivity -->
         <activity
             android:name=".activities.LoginActivity"
