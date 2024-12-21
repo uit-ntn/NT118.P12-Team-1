@@ -46,15 +46,15 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
         signupButton = findViewById(R.id.signupButton);
 
-
-        sessionManager = new SessionManager(this);
+        // Initialize session manager using singleton
+        sessionManager = SessionManager.getInstance(this);
 
         // Kiểm tra nếu đã đăng nhập
         if (sessionManager.isLoggedIn()) {
             navigateToMainActivity();
         }
 
-        // Xử lý sự kiện nhấn nút Đăng nhập
+        // Handling
         loginButton.setOnClickListener(v -> login());
 
 
@@ -64,9 +64,9 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
 
-        // Xử lý sự kiện nhấn vào Quên mật khẩu
+        // Handling forgot password button onclick
         forgotPasswordText.setOnClickListener(v -> {
-            Toast.makeText(LoginActivity.this, "Quên mật khẩu được nhấn", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Quên mật khẩu", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                     String token = loginResponse.getToken();
                     String userId = loginResponse.getUserId();
 
-                    sessionManager.createLoginSession(userId, token);
+                    sessionManager.createLoginSession(userId, token, "", email); // Pass additional fields if needed
 
                     navigateToMainActivity();
                 } else {
