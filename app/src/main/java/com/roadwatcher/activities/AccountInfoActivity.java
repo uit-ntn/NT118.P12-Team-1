@@ -23,7 +23,7 @@ public class AccountInfoActivity extends AppCompatActivity {
 
         // Link views
         backButton = findViewById(R.id.backButton);
-        cameraIcon = findViewById(R.id.cameraIcon);
+        cameraIcon = findViewById(R.id.ic_camera);
         accountName = findViewById(R.id.accountName);
         phoneNumber = findViewById(R.id.phoneNumber);
         emailAddress = findViewById(R.id.emailAddress);
