@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadWatcher"
         tools:targetApi="31">
+
         <!-- Set DashboardActivity as MAIN -->
         <activity
             android:name=".activities.DashboardActivity"
@@ -52,6 +53,7 @@
         <activity
             android:name=".activities.MapActivity"
             android:exported="true" />
+
         <!-- LoginActivity -->
         <activity
             android:name=".activities.LoginActivity"
@@ -63,6 +65,16 @@
         <activity
             android:name=".activities.SignupActivity"
             android:exported="true" />
-    </application>
 
+        <!-- AccountInfoActivity -->
+        <activity
+            android:name=".activities.AccountInfoActivity"
+            android:exported="true" />
+
+        <!-- SupportContactActivity -->
+        <activity
+            android:name=".activities.SupportContactActivity"
+            android:exported="true" />
+
+    </application>
 </manifest>

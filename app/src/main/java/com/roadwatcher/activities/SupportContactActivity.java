@@ -15,20 +15,20 @@ public class SupportContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_support_contact);
+        setContentView(R.layout.activity_support_contact); // Liên kết với tệp XML bạn đã cung cấp
 
-        // Initialize Views
+        // Khởi tạo các View
         backButton = findViewById(R.id.backButton);
         contactPhone = findViewById(R.id.contactPhone);
         contactEmail = findViewById(R.id.contactEmail);
         contactFacebook = findViewById(R.id.contactFacebook);
 
-        // Set Data (Optional - You can update the text dynamically if needed)
-        contactPhone.setText("090xxxxxxx");
-        contactEmail.setText("RoadWatcher@gmail.com");
-        contactFacebook.setText("Road Watcher");
+        // Thiết lập dữ liệu (có thể thay đổi động nếu cần)
+        contactPhone.setText("090xxxxxxx"); // Đặt số điện thoại
+        contactEmail.setText("RoadWatcher@gmail.com"); // Đặt email
+        contactFacebook.setText("Road Watcher"); // Đặt Facebook
 
-        // Back Button Listener
-        backButton.setOnClickListener(v -> finish()); // Return to the previous screen
+        // Xử lý sự kiện nút "Back"
+        backButton.setOnClickListener(v -> finish()); // Quay lại màn hình trước đó
     }
 }

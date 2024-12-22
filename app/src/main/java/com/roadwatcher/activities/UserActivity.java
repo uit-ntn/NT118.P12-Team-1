@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,12 @@ public class UserActivity extends AppCompatActivity {
 
         // Initialize session manager using singleton
         sessionManager = SessionManager.getInstance(this);
+
+        ImageView avatar = findViewById(R.id.avt);
+        avatar.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, AccountInfoActivity.class);
+            startActivity(intent);
+        });
 
         Button goToMapButton = findViewById(R.id.go_to_map);
         Button goToHomeButton = findViewById(R.id.go_to_home);
@@ -43,5 +50,10 @@ public class UserActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
+    }
+
+    public void onContact_Click(View view) {
+        Intent intent = new Intent(this, SupportContactActivity.class);
+        startActivity(intent);
     }
 }
