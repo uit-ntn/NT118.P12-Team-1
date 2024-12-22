@@ -1,139 +1,169 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".AccountInfoActivity">
-
-    <!-- Back Button -->
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back"
-        android:contentDescription="Back"
-        android:padding="8dp" />
-
-    <!-- Title -->
-    <TextView
-        android:id="@+id/titleText"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Thông tin tài khoản"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingBottom="16dp" />
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        tools:context=".activities.AccountInfoActivity"
+        >
 
-    <!-- Profile Picture with Crown Icon -->
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingBottom="16dp">
-
-        <ImageView
-            android:id="@+id/profilePicture"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/dog_profile"
-            android:contentDescription="Profile Picture"
-            android:scaleType="centerCrop"
-            android:background="@drawable/circle_background" />
-
-        <ImageView
-            android:id="@+id/cameraIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_camera"
-            android:contentDescription="Edit Picture"
-            android:background="@drawable/circle_background_small"
-            android:padding="4dp" />
-    </FrameLayout>
-
-    <!-- Account Details -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên tài khoản:"
-            android:textStyle="bold"
-            android:padding="4dp" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/accountName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kim Le"
-            android:padding="4dp" />
+            <!-- Header Section -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SĐT:"
-            android:textStyle="bold"
-            android:padding="4dp" />
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_back"
+                    android:contentDescription="Back"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    app:tint="@android:color/black" />
 
-        <TextView
-            android:id="@+id/phoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0901807457"
-            android:padding="4dp" />
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin tài khoản"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email:"
-            android:textStyle="bold"
-            android:padding="4dp" />
+            <!-- Profile Picture with Camera Icon -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp">
 
-        <TextView
-            android:id="@+id/emailAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="abc@gmail.com"
-            android:padding="4dp" />
+                <ImageView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/dog_profile"
+                    android:contentDescription="Profile Picture"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_shadow_background" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mật khẩu:"
-            android:textStyle="bold"
-            android:padding="4dp" />
+                <ImageView
+                    android:id="@+id/ic_camera"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_camera"
+                    android:contentDescription="Edit Picture"
+                    android:background="@drawable/circle_background_small"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
+            </FrameLayout>
 
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="************"
-            android:padding="4dp" />
-    </LinearLayout>
+            <!-- Card Layout for Account Details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_background_shadow"
+                android:padding="16dp"
+                android:layout_marginTop="24dp">
 
-    <!-- Buttons -->
-    <Button
-        android:id="@+id/changePasswordButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Đổi mật khẩu"
-        android:textColor="@color/green"
-        android:background="@android:color/transparent"
-        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên tài khoản"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
 
-    <Button
-        android:id="@+id/deleteAccountButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Xóa tài khoản"
-        android:textColor="@color/red"
-        android:background="@android:color/transparent"
-        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/accountName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kim Le"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="16dp" />
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SĐT"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0901807457"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/emailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="abc@gmail.com"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mật khẩu"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="************"
+                    android:textColor="#666666" />
+            </LinearLayout>
+
+            <!-- Buttons Section -->
+            <Button
+                android:id="@+id/changePasswordButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đổi mật khẩu"
+                android:background="@drawable/button_background_primary"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:padding="12dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/deleteAccountButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xóa tài khoản"
+                android:background="@drawable/button_background_danger"
+                android:textColor="@android:color/white"
+                android:padding="12dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
