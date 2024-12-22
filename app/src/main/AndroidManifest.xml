@@ -28,6 +28,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activities.GoogleAuthActivity"
+            android:label="Google Authentication"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <!-- ForgotPasswordActivity -->
         <activity
             android:name=".activities.ForgotPasswordActivity"

@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.roadwatcher.R;
@@ -27,59 +25,48 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
-    private Button loginButton, signupButton;
-    private CheckBox rememberMeCheckBox;
+    private Button loginButton;
     private TextView forgotPasswordText;
     private SessionManager sessionManager;
 
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Ánh xạ các view từ file XML
+        // Link views
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
-        rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
-        signupButton = findViewById(R.id.signupButton);
 
-        // Initialize session manager using singleton
+        // Initialize SessionManager
         sessionManager = SessionManager.getInstance(this);
 
-        // Kiểm tra nếu đã đăng nhập
+        // Check if already logged in
         if (sessionManager.isLoggedIn()) {
-            navigateToMainActivity();
+            navigateToDashboard();
         }
 
-        // Handling
+        // Login button click handler
         loginButton.setOnClickListener(v -> login());
 
-
-        signupButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        // Handling forgot password button onclick
+        // Forgot password click handler
         forgotPasswordText.setOnClickListener(v -> {
-            Toast.makeText(LoginActivity.this, "Quên mật khẩu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Forgot Password feature is under development!", Toast.LENGTH_SHORT).show();
         });
     }
 
     private void login() {
-        final String email = emailEditText.getText().toString().trim();
-        final String password = passwordEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng điền vào tất cả các trường", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        LoginRequest loginRequest = new LoginRequest(email , password);
+        LoginRequest loginRequest = new LoginRequest(email, password);
 
         AuthApiService apiService = ApiClient.getClient().create(AuthApiService.class);
         Call<LoginResponse> call = apiService.loginUser(loginRequest);
@@ -92,23 +79,23 @@ public class LoginActivity extends AppCompatActivity {
                     String token = loginResponse.getToken();
                     String userId = loginResponse.getUserId();
 
-                    sessionManager.createLoginSession(userId, token, "", email); // Pass additional fields if needed
-
-                    navigateToMainActivity();
+                    // Provide all four arguments to createLoginSession
+                    sessionManager.createLoginSession(userId, token, "", email);
+                    navigateToDashboard();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login failed. Please try again!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("LoginActivity", "Lỗi: " + t.getMessage());
-                Toast.makeText(LoginActivity.this, "Lỗi khi gửi yêu cầu đăng nhập, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                Log.e("LoginActivity", "Error: " + t.getMessage());
+                Toast.makeText(LoginActivity.this, "Server connection error!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void navigateToMainActivity() {
+    private void navigateToDashboard() {
         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
         startActivity(intent);
         finish();
