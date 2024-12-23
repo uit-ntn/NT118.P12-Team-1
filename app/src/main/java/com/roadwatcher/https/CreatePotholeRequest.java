@@ -1,8 +1,16 @@
 package com.roadwatcher.https;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CreatePotholeRequest {
+
+    @SerializedName("latitude")
     private double latitude;
+
+    @SerializedName("longitude")
     private double longitude;
+
+    @SerializedName("severity")
     private String severity;
 
     // Getters and Setters

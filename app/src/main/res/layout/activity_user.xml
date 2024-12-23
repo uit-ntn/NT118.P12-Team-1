@@ -67,7 +67,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onHistory_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -100,7 +99,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onLocation_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -133,7 +131,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onDashBoard_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -166,7 +163,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onDeleteCache_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -199,7 +195,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onSetting_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -265,7 +260,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onPolicy_Click"
             android:clickable="true"
             android:focusable="true">
 

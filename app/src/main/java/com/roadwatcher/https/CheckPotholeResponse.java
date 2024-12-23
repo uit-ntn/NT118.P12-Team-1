@@ -1,9 +1,16 @@
 package com.roadwatcher.https;
 
+import com.google.gson.annotations.SerializedName;
+import com.roadwatcher.https.CreatePotholeResponse;
+
 import java.util.List;
 
 public class CheckPotholeResponse {
+
+    @SerializedName("found")
     private boolean found;
+
+    @SerializedName("potholes")
     private List<CreatePotholeResponse> potholes;
 
     // Getters and Setters

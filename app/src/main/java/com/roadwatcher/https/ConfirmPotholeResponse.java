@@ -1,6 +1,9 @@
 package com.roadwatcher.https;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ConfirmPotholeResponse {
+    @SerializedName("message")
     private String message;
 
     // Getters and Setters

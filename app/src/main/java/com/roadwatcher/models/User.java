@@ -7,6 +7,7 @@ import java.util.List;
 public class User {
     @SerializedName("_id")
     private String id;
+
     @SerializedName("user_id")
     private String userId;
 
@@ -14,8 +15,12 @@ public class User {
     private String email;
     private String password;
     private String phone;
+
+    @SerializedName("registered_on")
     private String registeredOn;
+
     private List<PotholeReport> potholeReports;
+
 
     // Constructor
     public User(String id, String userId, String name, String email, String password, String phone, String registeredOn, List<PotholeReport> potholeReports) {

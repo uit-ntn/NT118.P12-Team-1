@@ -1,14 +1,24 @@
 package com.roadwatcher.https;
 
-public class StatisticsResponse {
-    private int count;
+import java.util.List;
 
-    // Getters and Setters
-    public int getCount() {
-        return count;
+public class StatisticsResponse {
+    private List<Statistic> statistics;
+
+    public List<Statistic> getStatistics() {
+        return statistics;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public static class Statistic {
+        private String severity;
+        private int count;
+
+        public String getSeverity() {
+            return severity;
+        }
+
+        public int getCount() {
+            return count;
+        }
     }
 }
