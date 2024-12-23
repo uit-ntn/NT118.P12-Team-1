@@ -81,5 +81,13 @@
             android:name=".activities.SupportContactActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".activities.AddPotholeActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".activities.PrivacyPolicyActivity"
+            android:exported="true" />
+
     </application>
 </manifest>
