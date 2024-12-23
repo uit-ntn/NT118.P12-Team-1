@@ -1,0 +1,235 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context=".activities.PrivacyPolicyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Back"
+                app:tint="@android:color/white"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chính Sách &amp; Bảo Mật"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="16dp" />
+
+        <!-- Privacy Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chính Sách Quyền Riêng Tư"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chúng tôi cam kết bảo mật thông tin của bạn. Các dữ liệu cá nhân sẽ được bảo vệ tuyệt đối và chỉ sử dụng với mục đích hỗ trợ dịch vụ."
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/learnMorePrivacy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tìm hiểu thêm"
+                    android:background="@drawable/button_background_primary"
+                    android:textColor="@android:color/white"
+                    android:paddingHorizontal="16dp"
+                    android:layout_gravity="end" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Security Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chính Sách Bảo Mật"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hệ thống của chúng tôi áp dụng các biện pháp bảo mật tốt nhất để bảo vệ dữ liệu người dùng. Vui lòng liên hệ với chúng tôi nếu bạn phát hiện lỗ hổng."
+                    android:textSize="16sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/learnMoreSecurity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tìm hiểu thêm"
+                    android:background="@drawable/button_background_primary"
+                    android:textColor="@android:color/white"
+                    android:paddingHorizontal="16dp"
+                    android:layout_gravity="end" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="#2575FC"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/footerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hỗ trợ &amp; Thắc mắc"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Contact Information -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <!-- Email -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_email"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/white"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <!-- Phone -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginEnd="16dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_phone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Điện thoại"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/white"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <!-- Chat -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_chat"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chat"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/white"
+                        android:gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

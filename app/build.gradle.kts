@@ -21,6 +21,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "MAPTILER_API_KEY", "\"WHKTZEd8aR1XHZbS8Nh3\"")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
 
 
     }
@@ -41,8 +44,18 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
+
 
 dependencies {
     implementation ("org.osmdroid:osmdroid-android:6.1.11")
@@ -55,29 +68,41 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
 
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation ("org.mongodb:mongodb-driver-sync:4.3.0")
+
 
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.play.services.maps)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+
+    implementation("com.android.volley:volley:1.2.1")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
 
 
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
-    implementation("com.google.firebase:firebase-analytics")
 
-
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
-    implementation("com.google.firebase:firebase-database:20.0.5")
 
 
 }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/background_gradient">
+
+    <!-- Back Button and Title Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thêm ổ gà"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/dog_profile"
+            android:contentDescription="Profile Picture"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <!-- Danger Level Input -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mức độ nguy hiểm:"
+        android:textSize="16sp"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/dangerLevelInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập địa chỉ"
+        android:background="@drawable/edittext_border"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <!-- Quantity Input -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Số lượng:"
+        android:textSize="16sp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/quantityInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số lượng"
+        android:background="@drawable/edittext_border"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <!-- Condition Input -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tình trạng:"
+        android:textSize="16sp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/conditionInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tình trạng"
+        android:background="@drawable/edittext_border"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button_background"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+</LinearLayout>

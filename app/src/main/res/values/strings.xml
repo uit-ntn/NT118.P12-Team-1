@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Road Watcher</string>
     <string name="mapbox_access_token">WHKTZEd8aR1XHZbS8Nh3</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>

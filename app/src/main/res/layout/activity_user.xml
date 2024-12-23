@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.UserActivity"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@color/white">
+
+    <!-- Avatar Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:orientation="horizontal"
+        android:background="@drawable/background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/avt"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/border_circle"
+                android:layout_centerInParent="true" />
+
+            <Button
+                android:id="@+id/user_edit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignEnd="@id/avt"
+                android:layout_alignBottom="@id/avt"
+                android:layout_marginStart="-40dp"
+                android:layout_marginEnd="-10dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/bt_user_edit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Options Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5.5"
+        android:orientation="vertical"
+        android:weightSum="7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bt_user_screen"
+                android:layout_centerVertical="true"
+                app:tint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lịch sử hoạt động"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_location"
+                android:layout_centerVertical="true"
+                app:tint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa điểm đã lưu"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/settings_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:onClick="onSettingsClick"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_setting"
+                android:layout_centerVertical="true"
+                app:tint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cài đặt"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/policy_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:onClick="onPolicyClick"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_policy"
+                android:layout_centerVertical="true"
+                app:tint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chính sách &amp; điều khoản"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Logout Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#D9D9D9"
+        android:gravity="center"
+        android:onClick="onLogOut_Click"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng xuất"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#005700"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/go_to_map"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bt_map_screen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bản đồ"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/go_to_home"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bt_home_screen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trang chủ"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/go_to_user"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bt_user_screen"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hồ sơ"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
