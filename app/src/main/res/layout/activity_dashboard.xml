@@ -9,7 +9,7 @@
     android:weightSum="10"
     android:background="@color/white">
 
-
+    <!-- Header Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,11 +34,7 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black" />
-
+    <!-- Month/Year Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -53,6 +49,7 @@
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
+            android:id="@+id/currentMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
@@ -72,11 +69,7 @@
             android:src="@drawable/ic_arrow_forward" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black" />
-
+    <!-- Statistics Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -107,18 +100,18 @@
                         android:text="Số ổ gà được thêm mới"
                         android:textSize="18dp"
                         android:textStyle="bold"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
+                        android:id="@+id/potholesAddedThisMonth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
                         android:textSize="35dp"
                         android:textStyle="bold"
                         android:textColor="#EA1A21"
                         android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"/>
-
+                        android:layout_centerHorizontal="true" />
 
                 </RelativeLayout>
 
@@ -144,22 +137,20 @@
                         android:text="Số ổ gà được loại bỏ"
                         android:textSize="18dp"
                         android:textStyle="bold"
-                        android:layout_centerHorizontal="true"/>
-
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3"
+                        android:text="0"
                         android:textSize="35dp"
                         android:textStyle="bold"
                         android:textColor="#3C8A00"
                         android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true" />
 
                 </RelativeLayout>
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -182,19 +173,21 @@
                     android:layout_height="wrap_content"
                     android:text="Tổng số ổ gà hiện tại"
                     android:textSize="25dp"
+                    android:padding="20dp"
                     android:textStyle="bold"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
                 <TextView
+                    android:id="@+id/totalPotholes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="0"
                     android:textSize="35dp"
                     android:textStyle="bold"
                     android:textColor="#FFF600"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="60dp"/>
+                    android:layout_marginRight="60dp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -206,6 +199,7 @@
 
     </LinearLayout>
 
+    <!-- Chart Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -224,6 +218,7 @@
 
     </LinearLayout>
 
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -249,7 +244,7 @@
                     android:background="@drawable/bt_map_screen"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -260,7 +255,7 @@
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -283,7 +278,7 @@
                     android:background="@drawable/bt_home_screen"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -294,7 +289,7 @@
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -316,7 +311,7 @@
                     android:background="@drawable/bt_user_screen"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -327,7 +322,7 @@
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp" />
 
             </RelativeLayout>
         </LinearLayout>
