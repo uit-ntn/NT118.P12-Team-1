@@ -1,17 +1,19 @@
 package com.roadwatcher.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
-
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.PotholeApiService;
@@ -39,22 +41,42 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Link views
+        // Liên kết các view
         totalPotholesText = findViewById(R.id.totalPotholes);
         potholesAddedThisMonthText = findViewById(R.id.potholesAddedThisMonth);
         currentMonthText = findViewById(R.id.currentMonth);
         barChart = findViewById(R.id.barChart);
 
-        // Display current month/year
+        Button goToMapButton = findViewById(R.id.go_to_map);
+        Button goToUserButton = findViewById(R.id.go_to_user);
+        Button goToHomeButton = findViewById(R.id.go_to_home);
+
+        // Hiển thị tháng/năm hiện tại
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat monthYearFormat = new SimpleDateFormat("MM/yyyy", Locale.getDefault());
         currentMonthText.setText(monthYearFormat.format(calendar.getTime()));
 
-        // Initialize API
+        // Khởi tạo API
         potholeApiService = ApiClient.getClient().create(PotholeApiService.class);
 
-        // Fetch pothole data
+        // Lấy dữ liệu ổ gà
         fetchPotholeData(calendar);
+
+        // Chuyển hướng cho các nút footer
+        goToMapButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
+            startActivity(intent);
+        });
+
+        goToUserButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, UserActivity.class);
+            startActivity(intent);
+        });
+
+        goToHomeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, DashboardActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchPotholeData(Calendar calendar) {
@@ -65,10 +87,10 @@ public class DashboardActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Pothole> potholes = response.body().getPotholes();
 
-                    // Update total potholes
+                    // Tổng số ổ gà hiện tại
                     totalPotholesText.setText(String.valueOf(potholes.size()));
 
-                    // Count potholes added this month
+                    // Số ổ gà được thêm mới trong tháng hiện tại
                     int currentMonth = calendar.get(Calendar.MONTH) + 1;
                     int currentYear = calendar.get(Calendar.YEAR);
                     long potholesThisMonth = potholes.stream()
@@ -86,13 +108,8 @@ public class DashboardActivity extends AppCompatActivity {
                             .count();
                     potholesAddedThisMonthText.setText(String.valueOf(potholesThisMonth));
 
-                    // Count potholes by severity
-                    long lowCount = potholes.stream().filter(p -> "low".equalsIgnoreCase(p.getSeverity())).count();
-                    long mediumCount = potholes.stream().filter(p -> "medium".equalsIgnoreCase(p.getSeverity())).count();
-                    long highCount = potholes.stream().filter(p -> "high".equalsIgnoreCase(p.getSeverity())).count();
-
-                    // Display bar chart
-                    displayBarChart(lowCount, mediumCount, highCount);
+                    // Vẽ biểu đồ
+                    drawBarChart(potholes);
                 } else {
                     Toast.makeText(DashboardActivity.this, "Lỗi khi tải dữ liệu ổ gà", Toast.LENGTH_SHORT).show();
                 }
@@ -105,18 +122,28 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
-    private void displayBarChart(long low, long medium, long high) {
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0, low)); // Low severity
-        entries.add(new BarEntry(1, medium)); // Medium severity
-        entries.add(new BarEntry(2, high)); // High severity
+    private void drawBarChart(List<Pothole> potholes) {
+        long lowCount = potholes.stream().filter(p -> "low".equalsIgnoreCase(p.getSeverity())).count();
+        long mediumCount = potholes.stream().filter(p -> "medium".equalsIgnoreCase(p.getSeverity())).count();
+        long highCount = potholes.stream().filter(p -> "high".equalsIgnoreCase(p.getSeverity())).count();
 
-        BarDataSet dataSet = new BarDataSet(entries, "Severity Levels");
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0, lowCount));
+        entries.add(new BarEntry(1, mediumCount));
+        entries.add(new BarEntry(2, highCount));
+
+        BarDataSet dataSet = new BarDataSet(entries, "Mức độ ổ gà");
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
         BarData data = new BarData(dataSet);
+        data.setBarWidth(0.9f);
 
         barChart.setData(data);
-        barChart.getDescription().setEnabled(false);
+        barChart.setFitBars(true);
         barChart.invalidate();
+
+        Description description = new Description();
+        description.setText("Thống kê ổ gà theo mức độ");
+        barChart.setDescription(description);
     }
 }

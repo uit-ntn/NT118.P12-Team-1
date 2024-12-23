@@ -2,13 +2,11 @@ package com.roadwatcher.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.roadwatcher.R;
@@ -26,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
-    private TextView forgotPasswordText;
+    private TextView forgotPasswordText, googleLoginButton;
     private SessionManager sessionManager;
 
     @Override
@@ -39,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
+        googleLoginButton = findViewById(R.id.googleText);
 
         // Initialize SessionManager
         sessionManager = SessionManager.getInstance(this);
@@ -55,6 +54,9 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordText.setOnClickListener(v -> {
             Toast.makeText(this, "Forgot Password feature is under development!", Toast.LENGTH_SHORT).show();
         });
+
+        // Google login button click handler
+        googleLoginButton.setOnClickListener(v -> navigateToGoogleAuth());
     }
 
     private void login() {
@@ -73,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
@@ -89,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("LoginActivity", "Error: " + t.getMessage());
                 Toast.makeText(LoginActivity.this, "Server connection error!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -99,5 +100,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void navigateToGoogleAuth() {
+        Intent intent = new Intent(LoginActivity.this, GoogleAuthActivity.class);
+        startActivity(intent);
     }
 }
