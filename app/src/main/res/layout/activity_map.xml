@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MapActivity"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:weightSum="10"
+    tools:context=".activities.MapActivity">
 
+    <!-- Thanh tìm kiếm và gợi ý -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
+        android:orientation="vertical"
         android:background="#FFFFFF">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_search_bar"
             android:padding="8dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
 
-            <!-- Ô nhập văn bản -->
             <EditText
                 android:id="@+id/ip_search_bar"
                 android:layout_width="160dp"
@@ -36,16 +37,13 @@
                 android:singleLine="true"
                 android:textColorHint="@color/black" />
 
-
             <Button
                 android:id="@+id/find_route"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="50dp"
-                android:background="@drawable/bt_find_route">
-
-            </Button>
+                android:background="@drawable/bt_find_route" />
 
             <ImageView
                 android:id="@+id/avt"
@@ -57,12 +55,26 @@
                 android:padding="5dp"
                 android:scaleType="centerCrop" />
         </RelativeLayout>
+
+        <!-- Danh sách gợi ý -->
+        <ListView
+            android:id="@+id/suggestions_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"
+            android:visibility="gone"
+            android:background="#FFFFFF" />
     </LinearLayout>
 
+    <!-- Phần bản đồ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.5">
+        android:layout_weight="7.5"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -72,6 +84,7 @@
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
             <Button
                 android:id="@+id/btnCurrentLocation"
                 android:layout_width="50dp"
@@ -81,18 +94,17 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/bt_my_location"
                 android:contentDescription="Vị trí của tôi" />
-
         </RelativeLayout>
-
     </LinearLayout>
 
+    <!-- Thanh điều hướng dưới cùng -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#005700"
         android:orientation="horizontal"
-        android:weightSum="9">
+        android:weightSum="9"
+        android:background="#005700">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -111,7 +123,7 @@
                     android:background="@drawable/bt_map_screen"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,11 +134,9 @@
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"/>
-
+                    android:layout_marginBottom="5dp" />
             </RelativeLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="0dp"
@@ -145,7 +155,7 @@
                     android:background="@drawable/bt_home_screen"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -156,8 +166,7 @@
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"/>
-
+                    android:layout_marginBottom="5dp" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -178,7 +187,7 @@
                     android:background="@drawable/bt_user_screen"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
-                    android:layout_alignParentTop="true"/>
+                    android:layout_alignParentTop="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -189,10 +198,8 @@
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="5dp"/>
-
+                    android:layout_marginBottom="5dp" />
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
