@@ -13,12 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.roadwatcher.MainActivity;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.AuthApiService;
-import com.roadwatcher.models.LoginRequest;
-import com.roadwatcher.models.LoginResponse;
+import com.roadwatcher.https.LoginRequest;
+import com.roadwatcher.https.LoginResponse;
 import com.roadwatcher.utils.SessionManager;
 
 import retrofit2.Call;

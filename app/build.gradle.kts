@@ -3,7 +3,6 @@ plugins {
 
     // Add the Google services Gradle plugin
     id("com.google.gms.google-services") version "4.4.2" apply false
-    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 
@@ -47,9 +46,7 @@ android {
         buildConfig = true
         compose = true
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -71,8 +68,6 @@ dependencies {
     implementation("androidx.activity:activity:1.9.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
-
-    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation ("org.mongodb:mongodb-driver-sync:4.3.0")
 
