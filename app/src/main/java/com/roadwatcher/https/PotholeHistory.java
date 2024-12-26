@@ -1,4 +1,4 @@
-package com.roadwatcher.models;
+package com.roadwatcher.https;
 public class PotholeHistory {
     private String id;
     private String historicalRecordId;
