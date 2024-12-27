@@ -1,6 +1,7 @@
-package com.roadwatcher.models;
+package com.roadwatcher.https;
 
 import com.google.gson.annotations.SerializedName;
+import com.roadwatcher.models.ManualReport;
 
 import java.util.List;
 

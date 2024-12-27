@@ -1,7 +1,5 @@
 package com.roadwatcher.activities;
 
-import static android.provider.Settings.System.DATE_FORMAT;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +16,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,8 +36,8 @@ import androidx.core.content.res.ResourcesCompat;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.PotholeApiService;
-import com.roadwatcher.models.CreatePotholeResponse;
-import com.roadwatcher.models.CreatePotholeRequest;
+import com.roadwatcher.https.CreatePotholeResponse;
+import com.roadwatcher.https.CreatePotholeRequest;
 import com.roadwatcher.models.Pothole;
 
 import org.json.JSONArray;
@@ -65,13 +62,8 @@ import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
-
-import android.location.LocationManager;
-import android.location.LocationListener;
-import android.location.Location;
 
 public class MapActivity extends AppCompatActivity {
 

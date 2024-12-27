@@ -9,6 +9,7 @@
     android:weightSum="10"
     android:background="@color/white">
 
+    <!-- Avatar Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -49,10 +50,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="15dp" />
         </RelativeLayout>
-
-
     </LinearLayout>
 
+    <!-- Options Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -67,7 +67,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onHistory_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -100,7 +99,6 @@
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onLocation_Click"
             android:clickable="true"
             android:focusable="true">
 
@@ -127,79 +125,14 @@
             android:background="@color/black" />
 
         <LinearLayout
+            android:id="@+id/settings_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onDashBoard_Click"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_dashboard"
-                android:layout_centerVertical="true"
-                app:tint="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thống kê"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginStart="20dp"
-                android:textSize="20sp"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:onClick="onDeleteCache_Click"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_cache"
-                android:layout_centerVertical="true"
-                app:tint="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Xóa cache"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginStart="20dp"
-                android:textSize="20sp"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:onClick="onSetting_Click"
+            android:onClick="onSettingsClick"
             android:clickable="true"
             android:focusable="true">
 
@@ -226,46 +159,14 @@
             android:background="@color/black" />
 
         <LinearLayout
+            android:id="@+id/policy_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:onClick="onContact_Click"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_contact_and_support"
-                android:layout_centerVertical="true"
-                app:tint="@color/black" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Liên hệ hỗ trợ"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginStart="20dp"
-                android:textSize="20sp"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:onClick="onPolicy_Click"
+            android:onClick="onPolicyClick"
             android:clickable="true"
             android:focusable="true">
 
@@ -285,9 +186,9 @@
                 android:layout_marginStart="20dp"
                 android:textSize="20sp"/>
         </LinearLayout>
-
     </LinearLayout>
 
+    <!-- Logout Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -307,6 +208,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -347,7 +249,6 @@
 
             </RelativeLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="0dp"
@@ -414,6 +315,5 @@
 
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

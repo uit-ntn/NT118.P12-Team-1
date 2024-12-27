@@ -2,19 +2,12 @@ package com.roadwatcher;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.roadwatcher.R;
 import com.roadwatcher.activities.LoginActivity;
 import com.roadwatcher.activities.MapActivity;
 import com.roadwatcher.utils.SessionManager;
-
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.api.IMapController;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sessionManager = new SessionManager(this);
+        sessionManager = SessionManager.getInstance(this); // Sử dụng getInstance()
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

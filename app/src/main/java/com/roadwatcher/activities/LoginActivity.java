@@ -2,23 +2,18 @@ package com.roadwatcher.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.roadwatcher.MainActivity;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.AuthApiService;
-import com.roadwatcher.models.LoginRequest;
-import com.roadwatcher.models.LoginResponse;
+import com.roadwatcher.https.LoginRequest;
+import com.roadwatcher.https.LoginResponse;
 import com.roadwatcher.utils.SessionManager;
 
 import retrofit2.Call;
@@ -29,79 +24,86 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
-    private CheckBox rememberMeCheckBox;
-    private TextView forgotPasswordText;
+    private TextView forgotPasswordText, googleLoginButton;
     private SessionManager sessionManager;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Ánh xạ các view từ file XML
+        // Link views
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
-        rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
+        googleLoginButton = findViewById(R.id.googleText);
 
-        sessionManager = new SessionManager(this);
+        // Initialize SessionManager
+        sessionManager = SessionManager.getInstance(this);
 
-        // Kiểm tra nếu đã đăng nhập
+        // Check if already logged in
         if (sessionManager.isLoggedIn()) {
-            navigateToMainActivity();
+            navigateToDashboard();
         }
 
-        // Xử lý sự kiện nhấn nút Đăng nhập
+        // Login button click handler
         loginButton.setOnClickListener(v -> login());
 
-        // Xử lý sự kiện nhấn vào Quên mật khẩu
+        // Forgot password click handler
         forgotPasswordText.setOnClickListener(v -> {
-            Toast.makeText(LoginActivity.this, "Quên mật khẩu được nhấn", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Forgot Password feature is under development!", Toast.LENGTH_SHORT).show();
         });
+
+        // Google login button click handler
+        googleLoginButton.setOnClickListener(v -> navigateToGoogleAuth());
     }
 
     private void login() {
-        final String email = emailEditText.getText().toString().trim();
-        final String password = passwordEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng điền vào tất cả các trường", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        LoginRequest loginRequest = new LoginRequest(email , password);
+        LoginRequest loginRequest = new LoginRequest(email, password);
 
         AuthApiService apiService = ApiClient.getClient().create(AuthApiService.class);
         Call<LoginResponse> call = apiService.loginUser(loginRequest);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     String userId = loginResponse.getUserId();
 
-                    sessionManager.createLoginSession(userId, token);
-
-                    navigateToMainActivity();
+                    // Provide all four arguments to createLoginSession
+                    sessionManager.createLoginSession(userId, token, "", email);
+                    navigateToDashboard();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login failed. Please try again!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("LoginActivity", "Lỗi: " + t.getMessage());
-                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Server connection error!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void navigateToMainActivity() {
+    private void navigateToDashboard() {
         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void navigateToGoogleAuth() {
+        Intent intent = new Intent(LoginActivity.this, GoogleAuthActivity.class);
+        startActivity(intent);
     }
 }

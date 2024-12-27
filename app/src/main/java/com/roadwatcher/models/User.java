@@ -48,18 +48,4 @@ public class User {
     public void setPotholeReports(List<PotholeReport> potholeReports) { this.potholeReports = potholeReports; }
 }
 
-class PotholeReport {
-    private String potholeId;
-    private String reportTime;
 
-    public PotholeReport(String potholeId, String reportTime) {
-        this.potholeId = potholeId;
-        this.reportTime = reportTime;
-    }
-
-    // Getters and setters
-    public String getPotholeId() { return potholeId; }
-    public void setPotholeId(String potholeId) { this.potholeId = potholeId; }
-    public String getReportTime() { return reportTime; }
-    public void setReportTime(String reportTime) { this.reportTime = reportTime; }
-}
