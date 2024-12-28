@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
 
@@ -20,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadWatcher"
         tools:targetApi="31">
+
+        <!-- Set DashboardActivity as MAIN -->
         <activity
             android:name=".activities.DashboardActivity"
             android:exported="true">
@@ -28,10 +31,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activities.GoogleAuthActivity"
+            android:label="Google Authentication"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- ForgotPasswordActivity -->
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
+            android:exported="true" />
+
+        <!-- UserActivity -->
         <activity
             android:name=".activities.UserActivity"
             android:exported="false" />
 
+        <!-- Map Configuration -->
         <meta-data
             android:name="osmdroid.cachePath"
             android:value="osmdroid" />
@@ -41,26 +57,50 @@
         <meta-data
             android:name="com.mapbox.token"
             android:value="WHKTZEd8aR1XHZbS8Nh3" />
+
+        <!-- MapActivity -->
         <activity
             android:name=".activities.MapActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
             android:exported="true" />
+
+        <!-- LoginActivity -->
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.RoadWatcher" />
+
+        <!-- SignupActivity -->
         <activity
             android:name=".activities.SignupActivity"
             android:exported="true" />
-    </application>
 
+        <!-- AccountInfoActivity -->
+        <activity
+            android:name=".activities.AccountInfoActivity"
+            android:exported="true" />
+
+        <!-- SupportContactActivity -->
+        <activity
+            android:name=".activities.SupportContactActivity"
+            android:exported="true" />
+
+        <!-- AddPotholeActivity -->
+        <activity
+            android:name=".activities.AddPotholeActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".activities.PrivacyPolicyActivity"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".activities.StatisticsBySeverityActivity"
+            android:exported="true" />
+
+        <activity android:name=".activities.SettingsActivity"
+            android:exported="true"/>
+
+    </application>
 </manifest>
