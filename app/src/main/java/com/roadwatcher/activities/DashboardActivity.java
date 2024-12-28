@@ -13,6 +13,8 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
@@ -122,27 +124,48 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void drawBarChart(List<Pothole> potholes) {
+        // Tính số lượng ổ gà theo mức độ
         long lowCount = potholes.stream().filter(p -> "low".equalsIgnoreCase(p.getSeverity())).count();
         long mediumCount = potholes.stream().filter(p -> "medium".equalsIgnoreCase(p.getSeverity())).count();
         long highCount = potholes.stream().filter(p -> "high".equalsIgnoreCase(p.getSeverity())).count();
 
+        // Tạo danh sách dữ liệu cho biểu đồ
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0, lowCount));
-        entries.add(new BarEntry(1, mediumCount));
-        entries.add(new BarEntry(2, highCount));
+        entries.add(new BarEntry(0f, lowCount)); // Nhỏ
+        entries.add(new BarEntry(1f, mediumCount)); // Trung bình
+        entries.add(new BarEntry(2f, highCount)); // Lớn
 
+        // Ẩn phần Description của biểu đồ
+        barChart.getDescription().setEnabled(false);
+
+        // Ẩn Legend của biểu đồ
+        barChart.getLegend().setEnabled(false);
+
+        // Cấu hình dữ liệu cho biểu đồ
         BarDataSet dataSet = new BarDataSet(entries, "Mức độ ổ gà");
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setValueTextSize(14f); // Kích thước chữ trên cột
+        dataSet.setValueTextColor(getResources().getColor(android.R.color.black)); // Màu chữ trên cột
+
+        dataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value); // Chuyển float thành int và trả về chuỗi
+            }
+        });
 
         BarData data = new BarData(dataSet);
-        data.setBarWidth(0.9f);
+        data.setBarWidth(0.5f); // Đặt chiều rộng của cột
 
+        // Cấu hình biểu đồ
         barChart.setData(data);
-        barChart.setFitBars(true);
+        barChart.setFitBars(true); // Đảm bảo cột nằm gọn trong khung
         barChart.invalidate();
 
-        Description description = new Description();
-        description.setText("Thống kê ổ gà theo mức độ");
-        barChart.setDescription(description);
+        // Ẩn trục X
+        barChart.getXAxis().setDrawLabels(false); // Tắt nhãn trục X
+        barChart.getXAxis().setDrawAxisLine(false); // Tắt đường trục X
+        barChart.getXAxis().setDrawGridLines(false); // Tắt các đường lưới ngang trục X
     }
+
 }

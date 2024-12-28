@@ -217,6 +217,74 @@
         </RelativeLayout>
 
     </LinearLayout>
+    <!-- Legend Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <!-- High Severity -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="20dp">
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#FF0000" /> <!-- Màu đỏ -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lớn"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <!-- Medium Severity -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="20dp">
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#FFFF00" /> <!-- Màu vàng -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trung bình"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <!-- Low Severity -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="#00FF00" /> <!-- Màu xanh -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhỏ"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
 
     <!-- Bottom Navigation -->
     <LinearLayout
