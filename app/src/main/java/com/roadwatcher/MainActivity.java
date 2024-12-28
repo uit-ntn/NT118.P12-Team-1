@@ -17,17 +17,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sessionManager = SessionManager.getInstance(this); // Sử dụng getInstance()
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Initialize session manager using singleton
-        sessionManager = SessionManager.getInstance(this);
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
 
         if (!sessionManager.isLoggedIn()) {
-            // Redirect to LoginActivity if not logged in
+            // Chưa đăng nhập, chuyển hướng tới LoginActivity
             navigateToLogin();
             return;
         }

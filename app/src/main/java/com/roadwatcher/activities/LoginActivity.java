@@ -2,11 +2,13 @@ package com.roadwatcher.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.roadwatcher.R;
@@ -32,30 +34,30 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Link views
+        // Liên kết các view
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
         googleLoginButton = findViewById(R.id.googleText);
 
-        // Initialize SessionManager
+        // Khởi tạo SessionManager
         sessionManager = SessionManager.getInstance(this);
 
-        // Check if already logged in
+        // Kiểm tra trạng thái đăng nhập
         if (sessionManager.isLoggedIn()) {
             navigateToDashboard();
         }
 
-        // Login button click handler
+        // Xử lý sự kiện khi nhấn nút login
         loginButton.setOnClickListener(v -> login());
 
-        // Forgot password click handler
-        forgotPasswordText.setOnClickListener(v -> {
-            Toast.makeText(this, "Forgot Password feature is under development!", Toast.LENGTH_SHORT).show();
-        });
+        // Xử lý sự kiện khi nhấn forgot password
+        forgotPasswordText.setOnClickListener(v ->
+                Toast.makeText(this, "Chức năng Quên mật khẩu đang được phát triển!", Toast.LENGTH_SHORT).show()
+        );
 
-        // Google login button click handler
+        // Xử lý sự kiện khi nhấn login với Google
         googleLoginButton.setOnClickListener(v -> navigateToGoogleAuth());
     }
 
@@ -64,34 +66,45 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         LoginRequest loginRequest = new LoginRequest(email, password);
 
+        // Tạo đối tượng Retrofit
         AuthApiService apiService = ApiClient.getClient().create(AuthApiService.class);
         Call<LoginResponse> call = apiService.loginUser(loginRequest);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     String userId = loginResponse.getUserId();
 
-                    // Provide all four arguments to createLoginSession
-                    sessionManager.createLoginSession(userId, token, "", email);
-                    navigateToDashboard();
+                    if (token != null && userId != null) {
+                        sessionManager.createLoginSession(userId, token, "", email);
+                        navigateToDashboard();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Phản hồi không hợp lệ từ máy chủ!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Login failed. Please try again!", Toast.LENGTH_SHORT).show();
+                    try {
+                        String errorMessage = response.errorBody().string();
+                        Log.e("LoginError", errorMessage);
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại, mật khẩu ko đúng", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại. Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Server connection error!", Toast.LENGTH_SHORT).show();
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+                Log.e("RetrofitError", t.getMessage());
+                Toast.makeText(LoginActivity.this, "Lỗi kết nối máy chủ: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

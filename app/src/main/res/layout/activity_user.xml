@@ -141,7 +141,7 @@
                 android:layout_height="50dp"
                 android:src="@drawable/ic_setting"
                 android:layout_centerVertical="true"
-                app:tint="@color/black" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"

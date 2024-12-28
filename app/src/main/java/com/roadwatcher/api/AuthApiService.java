@@ -21,19 +21,17 @@ public interface AuthApiService {
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
     @POST("api/auth/signup")
-    Call<SignupResponse> signupUser (@Body SignupRequest signupRequest);
+    Call<SignupResponse> signupUser(@Body SignupRequest signupRequest);
 
     @POST("/api/auth/forgot-password")
-    Call<ForgotPasswordResponse> forgotPassword (@Body ForgotPasswordRequest forgotPasswordRequest);
+    Call<ForgotPasswordResponse> forgotPassword(@Body ForgotPasswordRequest forgotPasswordRequest);
 
     @POST("/api/auth/reset-password")
-    Call<ResetPasswordResponse> resetPassword (@Body ResetPasswordRequest resetPasswordRequest);
+    Call<ResetPasswordResponse> resetPassword(@Body ResetPasswordRequest resetPasswordRequest);
 
     @GET("/api/auth/google")
     Call<Void> googleLogin();
 
     @GET("/api/auth/google/callback")
     Call<LoginResponse> googleCallback(@Query("code") String authCode);
-
-
 }

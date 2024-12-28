@@ -1,42 +1,25 @@
 package com.roadwatcher.models;
-
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Pothole {
-
     @SerializedName("_id")
     private String id;
 
-    @SerializedName("pothole_id")
+    @SerializedName("user_id")
     private String potholeId;
 
     private double longitude;
     private double latitude;
     private String severity;
-
-    @SerializedName("detected_time")
     private String detectedTime;
-
-    @SerializedName("acceleration_x")
     private double accelerationX;
-
-    @SerializedName("acceleration_y")
     private double accelerationY;
-
-    @SerializedName("acceleration_z")
     private double accelerationZ;
-
-    @SerializedName("gps_accuracy")
     private double gpsAccuracy;
-
-    @SerializedName("detected_by_user_id")
     private String detectedByUserId;
-
-    @SerializedName("confirmed_by_user")
     private boolean confirmedByUser;
-
-    @SerializedName("manual_reports")
     private List<ManualReport> manualReports;
 
     public Pothole(String id, String potholeId, double longitude, double latitude, String detectedTime, String severity,
@@ -86,27 +69,3 @@ public class Pothole {
     public void setManualReports(List<ManualReport> manualReports) { this.manualReports = manualReports; }
 }
 
-class ManualReport {
-
-    @SerializedName("user_id")
-    private String userId;
-
-    @SerializedName("report_time")
-    private String reportTime;
-
-    private String description;
-
-    public ManualReport(String userId, String reportTime, String description) {
-        this.userId = userId;
-        this.reportTime = reportTime;
-        this.description = description;
-    }
-
-    // Getters and setters
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
-    public String getReportTime() { return reportTime; }
-    public void setReportTime(String reportTime) { this.reportTime = reportTime; }
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-}

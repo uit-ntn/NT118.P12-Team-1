@@ -10,6 +10,7 @@ import com.roadwatcher.https.DeletePotholeResponse;
 import com.roadwatcher.https.GetAllPotholesResponse;
 import com.roadwatcher.https.StatisticsResponse;
 import com.roadwatcher.https.UpdatePotholeRequest;
+import com.roadwatcher.models.Pothole;
 
 import java.util.List;
 
@@ -23,12 +24,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PotholeApiService {
+    @GET("/api/potholes")
+    Call<List<Pothole>> getAllPotholes();
 
-    @POST("/api/potholes/")
+    @POST("/api/potholes")
     Call<CreatePotholeResponse> createPothole(@Body CreatePotholeRequest request);
-
-    @GET("/api/potholes/")
-    Call<GetAllPotholesResponse> getAllPotholes();
 
     @GET("/api/potholes/{id}")
     Call<CreatePotholeResponse> getPotholeById(@Path("id") String id);
@@ -53,4 +53,10 @@ public interface PotholeApiService {
 
     @GET("/api/potholes/statistics/month")
     Call<StatisticsResponse> getStatisticsByMonth(@Query("year") int year, @Query("month") int month);
+
+    @GET("/api/potholes")
+    Call<List<Pothole>> fetchAllPotholes();
+
+
 }
+
