@@ -16,10 +16,12 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.roadwatcher.MainActivity;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.PotholeApiService;
 import com.roadwatcher.models.Pothole;
+import com.roadwatcher.utils.SessionManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,9 +42,20 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Kiểm tra trạng thái đăng nhập
+        SessionManager sessionManager = SessionManager.getInstance(this);
+        if (!sessionManager.isLoggedIn()) {
+            // Nếu chưa đăng nhập, chuyển đến MainActivity
+            Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_dashboard);
 
-        // Liên kết các view
+        // Phần còn lại của mã khởi tạo
         totalPotholesText = findViewById(R.id.totalPotholes);
         potholesAddedThisMonthText = findViewById(R.id.potholesAddedThisMonth);
         currentMonthText = findViewById(R.id.currentMonth);
@@ -91,22 +104,31 @@ public class DashboardActivity extends AppCompatActivity {
                     // Tổng số ổ gà hiện tại
                     totalPotholesText.setText(String.valueOf(potholes.size()));
 
-                    // Số ổ gà được thêm mới trong tháng hiện tại
+                    // Lấy tháng và năm hiện tại
                     int currentMonth = calendar.get(Calendar.MONTH) + 1;
                     int currentYear = calendar.get(Calendar.YEAR);
+
+                    // Tính số ổ gà được thêm mới trong tháng hiện tại
                     long potholesThisMonth = potholes.stream()
                             .filter(p -> {
                                 String detectedTime = p.getDetectedTime();
                                 try {
+                                    // Định dạng ISO 8601 từ MongoDB
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault());
                                     Calendar detectedDate = Calendar.getInstance();
-                                    detectedDate.setTime(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(detectedTime));
+                                    detectedDate.setTime(dateFormat.parse(detectedTime));
+
+                                    // So sánh tháng và năm
                                     return detectedDate.get(Calendar.MONTH) + 1 == currentMonth &&
                                             detectedDate.get(Calendar.YEAR) == currentYear;
                                 } catch (Exception e) {
+                                    e.printStackTrace();
                                     return false;
                                 }
                             })
                             .count();
+
+                    // Hiển thị số ổ gà được thêm mới
                     potholesAddedThisMonthText.setText(String.valueOf(potholesThisMonth));
 
                     // Vẽ biểu đồ
@@ -122,6 +144,8 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void drawBarChart(List<Pothole> potholes) {
         // Tính số lượng ổ gà theo mức độ

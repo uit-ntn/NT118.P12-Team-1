@@ -1,5 +1,6 @@
 package com.roadwatcher.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private EditText emailEditText;
-    private Button forgotButton;
+    private Button forgotButton,loginButton;
     private AuthApiService authApiService;
 
     @Override
@@ -32,12 +33,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         // Initialize views
         emailEditText = findViewById(R.id.emailEditText);
         forgotButton = findViewById(R.id.forgotButton);
+        loginButton = findViewById(R.id.loginButton); // Gán nút "Đăng nhập"
+
 
         // Initialize AuthApiService
         authApiService = ApiClient.getClient().create(AuthApiService.class);
 
         // Set up button click listener
         forgotButton.setOnClickListener(view -> forgotPassword());
+
+        // Set up login button click lister
+        loginButton.setOnClickListener(view -> navigateToLogin());
     }
 
     private void forgotPassword() {
@@ -68,5 +74,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 Toast.makeText(ForgotPasswordActivity.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void navigateToLogin() {
+        Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

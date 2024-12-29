@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
-    private Button loginButton;
+    private Button loginButton, signUpButton;
     private TextView forgotPasswordText, googleLoginButton;
     private SessionManager sessionManager;
 
@@ -40,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         forgotPasswordText = findViewById(R.id.forgotPasswordText);
         googleLoginButton = findViewById(R.id.googleText);
+        signUpButton = findViewById(R.id.signUpButton);
+
+
 
         // Khởi tạo SessionManager
         sessionManager = SessionManager.getInstance(this);
@@ -52,14 +55,27 @@ public class LoginActivity extends AppCompatActivity {
         // Xử lý sự kiện khi nhấn nút login
         loginButton.setOnClickListener(v -> login());
 
-        // Xử lý sự kiện khi nhấn forgot password
-        forgotPasswordText.setOnClickListener(v ->
-                Toast.makeText(this, "Chức năng Quên mật khẩu đang được phát triển!", Toast.LENGTH_SHORT).show()
-        );
+        forgotPasswordText.setOnClickListener(v -> navigateToForgotPassword());
 
         // Xử lý sự kiện khi nhấn login với Google
         googleLoginButton.setOnClickListener(v -> navigateToGoogleAuth());
+
+        // Xử lý sự kiện khi nhân sign up
+        signUpButton.setOnClickListener(v -> navigateToSignUp());
+
     }
+
+
+    private void navigateToForgotPassword() {
+        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+        startActivity(intent);
+    }
+
+    private void navigateToSignUp() {
+        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+        startActivity(intent);
+    }
+
 
     private void login() {
         String email = emailEditText.getText().toString().trim();
@@ -83,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     String userId = loginResponse.getUserId();
+                    
 
                     if (token != null && userId != null) {
                         sessionManager.createLoginSession(userId, token, "", email);
