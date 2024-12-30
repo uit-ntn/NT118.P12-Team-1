@@ -14,6 +14,7 @@ import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.AuthApiService;
 import com.roadwatcher.https.SignupRequest;
+import com.roadwatcher.https.SignupResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,14 +65,14 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        // Get data from form field
+        // Get data from form fields
         String name = nameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String confirmPassword = confirmPasswordEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String phone = phoneEditText.getText().toString().trim();
 
-        // Check field
+        // Validate fields
         if (TextUtils.isEmpty(name)) {
             nameEditText.setError("Vui lòng nhập tên đăng nhập");
             return;
@@ -92,10 +93,38 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+        // Create signup request object
+        SignupRequest signupRequest = new SignupRequest(name, email, phone, password);
 
-        SignupRequest signupRequest = new SignupRequest(name,email,phone,password);
-        AuthApiService authApiService;
+        // Use ApiClient to get the AuthApiService
+        AuthApiService authApiService = ApiClient.getClient().create(AuthApiService.class);
 
+        // Make API call
+        Call<SignupResponse> call = authApiService.signupUser(signupRequest);
+        call.enqueue(new Callback<SignupResponse>() {
+            @Override
+            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Registration successful
+                    SignupResponse signupResponse = response.body();
+                    Toast.makeText(SignupActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+
+                    // Redirect to LoginActivity
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Handle API error
+                    Toast.makeText(SignupActivity.this, "Lỗi: Không thể đăng ký, vui lòng kiểm tra thông tin.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignupResponse> call, Throwable t) {
+                // Handle network error
+                Toast.makeText(SignupActivity.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

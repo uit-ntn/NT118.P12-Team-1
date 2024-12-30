@@ -2,6 +2,7 @@ package com.roadwatcher.activities;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.roadwatcher.R;
 import com.roadwatcher.api.ApiClient;
 import com.roadwatcher.api.AuthApiService;
+import com.roadwatcher.models.User;
+import com.roadwatcher.utils.SessionManager;
 import com.roadwatcher.https.ResetPasswordRequest;
 import com.roadwatcher.https.ResetPasswordResponse;
 
@@ -27,6 +30,8 @@ public class AccountInfoActivity extends AppCompatActivity {
     private ImageView backButton, cameraIcon;
     private TextView accountName, phoneNumber, emailAddress, password;
     private Button changePasswordButton, deleteAccountButton;
+    private AuthApiService apiService;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,13 @@ public class AccountInfoActivity extends AppCompatActivity {
         changePasswordButton = findViewById(R.id.changePasswordButton);
         deleteAccountButton = findViewById(R.id.deleteAccountButton);
 
+        // Initialize session manager and API service
+        sessionManager = SessionManager.getInstance(this);
+        apiService = ApiClient.getClient().create(AuthApiService.class);
+
+        // Fetch user info
+        fetchUserInfo();
+
         // Back button functionality
         backButton.setOnClickListener(v -> finish());
 
@@ -58,6 +70,38 @@ public class AccountInfoActivity extends AppCompatActivity {
         deleteAccountButton.setOnClickListener(v ->
                 Toast.makeText(this, "Xóa tài khoản đang được phát triển!", Toast.LENGTH_SHORT).show()
         );
+    }
+
+    private void fetchUserInfo() {
+        String userId = sessionManager.getUserId();
+        String token = sessionManager.getToken();
+
+        if (userId == null || token == null) {
+            Toast.makeText(this, "Session expired. Please log in again.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        apiService.getUserById(userId, "Bearer " + token).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Update UI with user data
+                    User user = response.body();
+                    accountName.setText(user.getName());
+                    phoneNumber.setText(user.getPhone());
+                    emailAddress.setText(user.getEmail());
+                    password.setText("************"); // Hide the actual password
+                } else {
+                    Toast.makeText(AccountInfoActivity.this, "Failed to fetch user info", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("AccountInfoActivity", "Error fetching user info", t);
+                Toast.makeText(AccountInfoActivity.this, "Error fetching user info", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showChangePasswordDialog() {
@@ -86,8 +130,14 @@ public class AccountInfoActivity extends AppCompatActivity {
     }
 
     private void changePassword(String newPassword, AlertDialog dialog) {
+        String token = sessionManager.getToken();
+
+        if (token == null) {
+            Toast.makeText(this, "Session expired. Please log in again.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         AuthApiService apiService = ApiClient.getClient().create(AuthApiService.class);
-        String token = "YOUR_AUTH_TOKEN"; // Thay thế bằng token thực tế
         ResetPasswordRequest request = new ResetPasswordRequest(token, newPassword);
 
         apiService.resetPassword(request).enqueue(new Callback<ResetPasswordResponse>() {

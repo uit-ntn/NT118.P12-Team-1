@@ -8,11 +8,14 @@ import com.roadwatcher.https.ResetPasswordRequest;
 import com.roadwatcher.https.ResetPasswordResponse;
 import com.roadwatcher.https.SignupRequest;
 import com.roadwatcher.https.SignupResponse;
+import com.roadwatcher.models.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface AuthApiService {
@@ -34,4 +37,9 @@ public interface AuthApiService {
 
     @GET("/api/auth/google/callback")
     Call<LoginResponse> googleCallback(@Query("code") String authCode);
+
+    @GET("/api/auth/users/{userId}")
+    Call<User> getUserById(@Path("userId") String userId, @Header("Authorization") String token);
+
+
 }

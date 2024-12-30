@@ -39,10 +39,11 @@
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/bt_user_edit" />
 
+            <!-- user name -->
             <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nguyen"
                 android:textColor="@color/black"
                 android:textSize="24dp"
                 android:textStyle="bold"

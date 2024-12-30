@@ -20,9 +20,9 @@ public class ApiClient {
             // Cấu hình OkHttpClient
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(loggingInterceptor) // Thêm logging
-                    .connectTimeout(30, TimeUnit.SECONDS) // Timeout kết nối
-                    .readTimeout(30, TimeUnit.SECONDS) // Timeout đọc dữ liệu
-                    .writeTimeout(30, TimeUnit.SECONDS) // Timeout ghi dữ liệu
+                    .connectTimeout(300, TimeUnit.SECONDS) // Timeout kết nối
+                    .readTimeout(300, TimeUnit.SECONDS) // Timeout đọc dữ liệu
+                    .writeTimeout(300, TimeUnit.SECONDS) // Timeout ghi dữ liệu
                     .build();
 
             // Cấu hình Retrofit

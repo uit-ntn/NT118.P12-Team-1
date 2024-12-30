@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bóng -->
+    <item>
+        <shape>
+            <solid android:color="#E0E0E0" /> <!-- Màu bóng -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <!-- Viền chính -->
+    <item android:top="4dp" android:left="4dp">
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- Nền -->
+            <corners android:radius="8dp" />
+            <stroke android:width="1dp" android:color="#CCCCCC" /> <!-- Viền -->
+        </shape>
+    </item>
+</layer-list>
