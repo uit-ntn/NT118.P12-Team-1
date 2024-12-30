@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
+        android:background="@drawable/background"
         tools:context=".activities.AccountInfoActivity"
         >
 
@@ -79,69 +79,106 @@
                 android:padding="16dp"
                 android:layout_marginTop="24dp">
 
-                <TextView
+                <!-- Tên tài khoản -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tên tài khoản"
-                    android:textColor="#333333"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
+                    android:orientation="vertical"
+                    android:background="@drawable/field_border"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
 
-                <TextView
-                    android:id="@+id/accountName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Kim Le"
-                    android:textColor="#666666"
-                    android:layout_marginBottom="16dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tên tài khoản"
+                        android:textColor="#333333"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="SĐT"
-                    android:textColor="#333333"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:id="@+id/accountName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kim Le"
+                        android:textColor="#666666" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/phoneNumber"
+                <!-- SĐT -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0901807457"
-                    android:textColor="#666666"
-                    android:layout_marginBottom="16dp" />
+                    android:orientation="vertical"
+                    android:background="@drawable/field_border"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textColor="#333333"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SĐT"
+                        android:textColor="#333333"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
 
-                <TextView
-                    android:id="@+id/emailAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="abc@gmail.com"
-                    android:textColor="#666666"
-                    android:layout_marginBottom="16dp" />
+                    <TextView
+                        android:id="@+id/phoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0901807457"
+                        android:textColor="#666666" />
+                </LinearLayout>
 
-                <TextView
+                <!-- Email -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mật khẩu"
-                    android:textColor="#333333"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
+                    android:orientation="vertical"
+                    android:background="@drawable/field_border"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
 
-                <TextView
-                    android:id="@+id/password"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="#333333"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/emailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="abc@gmail.com"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <!-- Mật khẩu -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="************"
-                    android:textColor="#666666" />
+                    android:orientation="vertical"
+                    android:background="@drawable/field_border"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mật khẩu"
+                        android:textColor="#333333"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="************"
+                        android:textColor="#666666" />
+                </LinearLayout>
             </LinearLayout>
+
 
             <!-- Buttons Section -->
             <Button
